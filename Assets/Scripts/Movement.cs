@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -35,17 +33,42 @@ public class Movement : MonoBehaviour
     }
 
     void ProcessRotation() {
+        if (GetComponent<CamSwitch>().getCam1State()) {
+            cam1Rotation();
+        }
+        else {
+            cam2Rotation();
+        }
+        
+    }
+
+    void cam1Rotation() {
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
             ApplyRotation(rotationSpeed);
             if (!leftBooster.isPlaying) {
                 leftBooster.Play();
-            }            
+            }
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
             ApplyRotation(-rotationSpeed);
             if (!rightBooster.isPlaying) {
                 rightBooster.Play();
-            }            
+            }
+        }
+    }
+
+    void cam2Rotation() {
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
+            ApplyRotation(rotationSpeed);
+            if (!leftBooster.isPlaying) {
+                leftBooster.Play();
+            }
+        }
+        else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
+            ApplyRotation(-rotationSpeed);
+            if (!rightBooster.isPlaying) {
+                rightBooster.Play();
+            }
         }
     }
 
